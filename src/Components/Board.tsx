@@ -4,12 +4,16 @@ import {Box, Card, CardContent, Grid, Typography} from "@mui/material";
 import {Link} from "react-router-dom";
 import {withAuthenticationRequired} from "@auth0/auth0-react";
 import BoardState from "../State/BoardState";
+import {DragDropContext, Draggable, Droppable} from "react-beautiful-dnd";
 
 function Board() {
 
     const {id} = useParams();
 
     const board = BoardState.find(b => b.id === id)!;
+
+    const onDragEnd = () => {
+    };
 
     return (
         <Box>
@@ -22,16 +26,41 @@ function Board() {
                 </Grid>
                 {board.lists.map(list => (
                     <Grid item xs={3}>
-                        <Box sx={{ background: "#aaaaaa", display: "flex", flexDirection: "column" }}>
-                            <Typography>{list.name}</Typography>
-                            {list.cards.map(card => (
-                                <Card>
-                                    <CardContent>
-                                        {card.title}
-                                    </CardContent>
-                                </Card>
-                            ))}
-                        </Box>
+                        <DragDropContext onDragEnd={onDragEnd}>
+                            <div>
+                                <Droppable droppableId={`droppable-${list.id}`}>
+                                    {
+                                        (provided) => (
+                                            <div ref={provided.innerRef} {...provided.droppableProps}>
+                                                <Box sx={{
+                                                    background: "#aaaaaa",
+                                                    display: "flex",
+                                                    flexDirection: "column"
+                                                }}>
+                                                    <Typography>{list.name}</Typography>
+                                                    {list.cards.map((card, idx) => (
+                                                        <Draggable draggableId={`draggable-${card.id}`} index={idx}
+                                                                   key={idx}>
+                                                            {(provided) => (
+                                                                <div ref={provided.innerRef}
+                                                                     {...provided.draggableProps}
+                                                                     {...provided.dragHandleProps}>
+                                                                    <Card>
+                                                                        <CardContent>
+                                                                            {card.title}
+                                                                        </CardContent>
+                                                                    </Card>
+                                                                </div>
+                                                            )}
+                                                        </Draggable>
+                                                    ))}
+                                                </Box>
+                                            </div>
+                                        )
+                                    }
+                                </Droppable>
+                            </div>
+                        </DragDropContext>
                     </Grid>
                 ))}
             </Grid>

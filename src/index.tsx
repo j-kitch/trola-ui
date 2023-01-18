@@ -14,16 +14,14 @@ const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
 );
 root.render(
-    <React.StrictMode>
-        <Auth0Provider domain="dev-cstaap57nsxcjdlq.us.auth0.com"
-                       clientId="02HOjjGMw6pMZpmxg2b3ZZU3uGcJ11HT"
-                       redirectUri={window.location.origin}>
-            <BrowserRouter>
-                <CssBaseline/>
-                <App/>
-            </BrowserRouter>
-        </Auth0Provider>
-    </React.StrictMode>
+    <Auth0Provider domain="dev-cstaap57nsxcjdlq.us.auth0.com"
+                   clientId="02HOjjGMw6pMZpmxg2b3ZZU3uGcJ11HT"
+                   redirectUri={window.location.origin}>
+        <BrowserRouter>
+            <CssBaseline/>
+            <App/>
+        </BrowserRouter>
+    </Auth0Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function
