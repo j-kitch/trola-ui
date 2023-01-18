@@ -1,6 +1,6 @@
 import {Route, Routes} from "react-router";
 import BoardList from "./BoardList";
-import Board from "./Board";
+import Board from "./Board/Board";
 
 export default function Router() {
     return (
