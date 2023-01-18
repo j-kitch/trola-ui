@@ -2,8 +2,9 @@ import React from "react";
 import {useParams} from "react-router";
 import {Typography} from "@mui/material";
 import {Link} from "react-router-dom";
+import {withAuthenticationRequired} from "@auth0/auth0-react";
 
-export default function Board() {
+function Board() {
     const {id} = useParams();
     return (
         <div>
@@ -14,3 +15,5 @@ export default function Board() {
         </div>
     );
 }
+
+export default withAuthenticationRequired(Board);

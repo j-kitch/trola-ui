@@ -4,7 +4,7 @@ import LoadingBackdrop from "./Components/LoadingBackdrop";
 import {NavBar} from "./Components/NavBar";
 import Router from "./Components/Router";
 
-const App: React.FC = () => {
+export default function App() {
     return (
         <Container>
             <LoadingBackdrop/>
@@ -15,6 +15,4 @@ const App: React.FC = () => {
             </Box>
         </Container>
     );
-};
-
-export default App;
+}

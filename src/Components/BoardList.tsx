@@ -1,8 +1,9 @@
 import React from "react";
 import {Typography} from "@mui/material";
 import {Link} from "react-router-dom";
+import {withAuthenticationRequired} from "@auth0/auth0-react";
 
-export default function BoardList() {
+function BoardList() {
     return (
         <div>
             <Typography>Boards List</Typography>
@@ -12,3 +13,5 @@ export default function BoardList() {
         </div>
     );
 }
+
+export default withAuthenticationRequired(BoardList);
