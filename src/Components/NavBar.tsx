@@ -4,7 +4,7 @@ import {MouseEventHandler, useState} from "react";
 
 export function NavBar() {
 
-    const {isAuthenticated} = useAuth0();
+    const {isAuthenticated, isLoading} = useAuth0();
 
     return (
         <Box>
@@ -12,7 +12,7 @@ export function NavBar() {
                 <Toolbar>
                     <Typography sx={{flex: 1}}>Tróla</Typography>
                     {isAuthenticated && <UserDetails/>}
-                    {!isAuthenticated && <LoginButton/>}
+                    {!isAuthenticated && !isLoading && <LoginButton/>}
                 </Toolbar>
             </AppBar>
         </Box>

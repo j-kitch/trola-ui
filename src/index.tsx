@@ -8,6 +8,7 @@ import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import {Auth0Provider} from "@auth0/auth0-react";
 import {CssBaseline} from "@mui/material";
+import {BrowserRouter} from "react-router-dom";
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
@@ -17,8 +18,10 @@ root.render(
         <Auth0Provider domain="dev-cstaap57nsxcjdlq.us.auth0.com"
                        clientId="02HOjjGMw6pMZpmxg2b3ZZU3uGcJ11HT"
                        redirectUri={window.location.origin}>
-            <CssBaseline/>
-            <App/>
+            <BrowserRouter>
+                <CssBaseline/>
+                <App/>
+            </BrowserRouter>
         </Auth0Provider>
     </React.StrictMode>
 );
