@@ -6,13 +6,20 @@ import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
+import {Auth0Provider} from "@auth0/auth0-react";
+import {CssBaseline} from "@mui/material";
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
 );
 root.render(
     <React.StrictMode>
-        <App/>
+        <Auth0Provider domain="dev-cstaap57nsxcjdlq.us.auth0.com"
+                       clientId="02HOjjGMw6pMZpmxg2b3ZZU3uGcJ11HT"
+                       redirectUri={window.location.origin}>
+            <CssBaseline/>
+            <App/>
+        </Auth0Provider>
     </React.StrictMode>
 );
 
