@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import {AppBar, Box, Button, Menu, MenuItem, Toolbar, Typography} from "@mui/material";
 import {useAuth0} from "@auth0/auth0-react";
+import UserAvatar from "./UserAvatar";
 
 const Bar: React.FC = () => {
 
@@ -24,9 +25,7 @@ const Bar: React.FC = () => {
                 </Box>
                 <Box>
                     {auth0.isAuthenticated && <>
-                        <Typography onClick={handleOpenUserMenu}>
-                            Hello {auth0.user!.given_name}
-                        </Typography>
+                        <UserAvatar onClick={handleOpenUserMenu}/>
                         <Menu open={Boolean(anchorElName)}
                               anchorEl={anchorElName}
                               onClose={handleCloseUserMenu}>
