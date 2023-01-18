@@ -18,7 +18,7 @@ const Bar: React.FC = () => {
     };
 
     return (
-        <AppBar>
+        <AppBar component="nav">
             <Toolbar>
                 <Box sx={{flex: 1}}>
                     <Typography>Tróla</Typography>

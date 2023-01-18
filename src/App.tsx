@@ -1,8 +1,9 @@
 import React from 'react';
-import {Button, CssBaseline} from "@mui/material";
+import {Box, Container, CssBaseline, Toolbar, Typography} from "@mui/material";
 import {Auth0Provider} from "@auth0/auth0-react";
 
 import Bar from "./Bar";
+import Boards from "./Boards";
 
 const App: React.FC = () => {
     return (
@@ -10,8 +11,15 @@ const App: React.FC = () => {
                        clientId="02HOjjGMw6pMZpmxg2b3ZZU3uGcJ11HT"
                        redirectUri={window.location.origin}>
             <CssBaseline/>
-            <Bar/>
-            <Button variant="contained">Hello World</Button>
+            <Container>
+                <Box>
+                    <Bar/>
+                    <Box component="main" sx={{p: 3}}>
+                        <Toolbar/>
+                        <Boards />
+                    </Box>
+                </Box>
+            </Container>
         </Auth0Provider>
     )
 };
