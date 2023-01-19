@@ -1,10 +1,12 @@
 import React, {useEffect, useState} from "react";
 import {Button, Sheet, Typography} from "@mui/joy";
 import useLanguage from "../hook/language";
+import {useAuth0} from "@auth0/auth0-react";
 
 export default function WelcomePage() {
 
     const language = useLanguage();
+    const auth0 = useAuth0();
 
     return (
         <Sheet sx={{
@@ -21,7 +23,7 @@ export default function WelcomePage() {
                 Say <Typography color="primary">{language.hello}</Typography> to the future of project
                 management, <br/> <Typography color="primary">{language.today}!</Typography>
             </Typography>
-            <Button variant="soft">
+            <Button variant="soft" onClick={() => auth0.loginWithPopup()}>
                 Sign up for free
             </Button>
         </Sheet>
