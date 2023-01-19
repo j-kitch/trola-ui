@@ -18,7 +18,7 @@ export default function NotFoundPage() {
             <Typography level="h1" sx={{height: 160}}>
                 I'm sorry, we couldn't find the page you're looking for. 😔
             </Typography>
-            <Link to="/">
+            <Link to="/" style={{ textDecoration: "none" }}>
                 <Button variant="soft">
                     Return to home
                 </Button>

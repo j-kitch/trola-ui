@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Button, Menu, MenuItem, Typography} from "@mui/joy";
+import {Box, Button, Menu, MenuItem, Typography} from "@mui/joy";
 import {useAuth0} from "@auth0/auth0-react";
 import {Link} from "react-router-dom";
 import UserAvatar from "./UserAvatar";
@@ -23,6 +23,22 @@ export default function AppBar() {
             <Link to="/" style={{textDecoration: "none"}}>
                 <Typography level="h4" component="h1">Trolá</Typography>
             </Link>
+            <Box sx={{
+                flexGrow: 1,
+                p: 6,
+                display: "flex",
+                flexDirection: "row",
+                gap: 5,
+            }}>
+                {auth0.isAuthenticated && <>
+                    <Link to="/teams" style={{textDecoration: "none"}}>
+                        <Typography level="body1" component="h2">Teams</Typography>
+                    </Link>
+                    <Link to="/boards" style={{textDecoration: "none"}}>
+                        <Typography level="body1" component="h2">Boards</Typography>
+                    </Link>
+                </>}
+            </Box>
             {!auth0.isAuthenticated && <Button onClick={() => auth0.loginWithPopup()}>
                 Login
             </Button>}

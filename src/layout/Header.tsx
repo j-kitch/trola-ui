@@ -9,7 +9,6 @@ export default function Header(props: BoxProps) {
             g: 2,
             display: "flex",
             flexDirection: "row",
-            justifyContent: "space-between",
             alignItems: "center",
             gridColumns: "1 / -1",
             borderBottom: "1px solid",
