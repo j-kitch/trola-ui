@@ -16,7 +16,7 @@ export default function Header(props: BoxProps) {
             borderColor: "divider",
             position: "sticky",
             top: 0,
-            zIndex: 10000,
+            zIndex: 1100,
         }}/>
     );
 }
