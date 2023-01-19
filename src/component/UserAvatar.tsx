@@ -4,7 +4,7 @@ import {Avatar} from "@mui/joy";
 interface Props {
     givenName: string
     familyName: string
-    onClick: MouseEventHandler<HTMLDivElement>
+    onClick?: MouseEventHandler<HTMLDivElement> | undefined
 }
 
 export default function UserAvatar(props: Props) {

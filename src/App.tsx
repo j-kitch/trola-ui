@@ -16,6 +16,7 @@ import IndexPage from "./page/IndexPage";
 import NavigateToHome from "./component/NavigateToHome";
 import TeamsPage from "./page/TeamsPage";
 import BoardsPage from "./page/BoardsPage";
+import TeamPage from "./page/TeamPage";
 
 export default function App() {
     return (
@@ -34,6 +35,7 @@ export default function App() {
                                 <Route path="/welcome" element={<WelcomePage/>} errorElement={<ErrorPage/>}/>
                                 <Route path="/user" element={<UserPage/>} errorElement={<ErrorPage/>}/>
                                 <Route path="/teams" element={<TeamsPage/>} errorElement={<ErrorPage/>}/>
+                                <Route path="/teams/:id" element={<TeamPage/>} errorElement={<ErrorPage/>}/>
                                 <Route path="/boards" element={<BoardsPage/>} errorElement={<ErrorPage/>}/>
                                 <Route path="*" element={<NotFoundPage/>} errorElement={<ErrorPage/>}/>
                             </Routes>
