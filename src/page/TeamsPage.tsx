@@ -1,5 +1,5 @@
 import React from "react";
-import {AvatarGroup, Card, Grid, Sheet, Typography} from "@mui/joy";
+import {AvatarGroup, Breadcrumbs, Card, Grid, Sheet, Typography} from "@mui/joy";
 import Add from "@mui/icons-material/Add";
 import {Link} from "react-router-dom";
 import {useAuth0} from "@auth0/auth0-react";
@@ -27,6 +27,12 @@ export default function TeamsPage() {
             gap: 5,
         }}>
             <Grid container spacing={2} sx={{flexGrow: 1, marginX: "auto"}}>
+                <Grid xs={12}>
+                    <Breadcrumbs>
+                        <Link to="/" style={{ textDecoration: "none" }}>Home</Link>
+                        <Typography>Teams</Typography>
+                    </Breadcrumbs>
+                </Grid>
                 <Grid xs={12}>
                     <Typography level="h3" textAlign="left">Your Teams</Typography>
                 </Grid>

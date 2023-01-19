@@ -4,9 +4,10 @@ import {Card, Grid, Sheet, Typography} from "@mui/joy";
 import useTeams from "../hook/useTeams";
 import useUsers from "../hook/useUsers";
 import UserAvatar from "../component/UserAvatar";
-import {AvatarGroup} from "@mui/material";
+import {AvatarGroup, Breadcrumbs} from "@mui/material";
 import useBoards from "../hook/useBoards";
 import Add from "@mui/icons-material/Add";
+import {Link} from "react-router-dom";
 
 type Params = {
     id: string
@@ -37,6 +38,13 @@ export default function TeamPage() {
             gap: 5,
         }}>
             <Grid container spacing={2} sx={{flexGrow: 1, marginX: "auto"}}>
+                <Grid xs={12}>
+                    <Breadcrumbs>
+                        <Link to="/" style={{ textDecoration: "none" }}>Home</Link>
+                        <Link to="/teams" style={{ textDecoration: "none" }}>Team</Link>
+                        <Typography>{team.name}</Typography>
+                    </Breadcrumbs>
+                </Grid>
                 <Grid xs={8}>
                     <Typography level="h1" textAlign="left">{team.name}</Typography>
                 </Grid>
