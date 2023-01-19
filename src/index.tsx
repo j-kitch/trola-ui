@@ -2,26 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import '@fontsource/roboto/300.css';
-import '@fontsource/roboto/400.css';
-import '@fontsource/roboto/500.css';
-import '@fontsource/roboto/700.css';
-import {Auth0Provider} from "@auth0/auth0-react";
-import {CssBaseline} from "@mui/material";
-import {BrowserRouter} from "react-router-dom";
+import '@fontsource/public-sans';
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
 );
 root.render(
-    <Auth0Provider domain="dev-cstaap57nsxcjdlq.us.auth0.com"
-                   clientId="02HOjjGMw6pMZpmxg2b3ZZU3uGcJ11HT"
-                   redirectUri={window.location.origin}>
-        <BrowserRouter>
-            <CssBaseline/>
-            <App/>
-        </BrowserRouter>
-    </Auth0Provider>
+    <App/>
 );
 
 // If you want to start measuring performance in your app, pass a function
