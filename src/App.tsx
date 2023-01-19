@@ -14,6 +14,8 @@ import NotFoundPage from "./page/NotFoundPage";
 import ErrorPage from "./page/ErrorPage";
 import IndexPage from "./page/IndexPage";
 import NavigateToHome from "./component/NavigateToHome";
+import TeamsPage from "./page/TeamsPage";
+import BoardsPage from "./page/BoardsPage";
 
 export default function App() {
     return (
@@ -31,6 +33,8 @@ export default function App() {
                                 <Route index element={<IndexPage/>} errorElement={<ErrorPage/>}/>
                                 <Route path="/welcome" element={<WelcomePage/>} errorElement={<ErrorPage/>}/>
                                 <Route path="/user" element={<UserPage/>} errorElement={<ErrorPage/>}/>
+                                <Route path="/teams" element={<TeamsPage/>} errorElement={<ErrorPage/>}/>
+                                <Route path="/boards" element={<BoardsPage/>} errorElement={<ErrorPage/>}/>
                                 <Route path="*" element={<NotFoundPage/>} errorElement={<ErrorPage/>}/>
                             </Routes>
                         </Main>
