@@ -32,7 +32,7 @@ export default function TeamsPage() {
                 </Grid>
                 {
                     usersTeams.map(team => (
-                        <Grid xs={4}>
+                        <Grid xs={4} key={team.id}>
                             <Link to={`/teams/${team.id}`} style={{textDecoration: "none"}}>
                                 <Card variant="outlined" sx={{height: '150px'}}>
                                     <Typography level="h5" textAlign="left">{team.name}</Typography>
@@ -41,7 +41,7 @@ export default function TeamsPage() {
                                     </Typography>
                                     <AvatarGroup sx={{pt: 2}}>
                                         {team.members.map(m => userUsers.find(u => u.subject === m)!)
-                                            .map(m => <UserAvatar givenName={m.givenName} familyName={m.surname}/>)}
+                                            .map(m => <UserAvatar key={m.subject} givenName={m.givenName} familyName={m.surname}/>)}
                                     </AvatarGroup>
                                 </Card>
                             </Link>
