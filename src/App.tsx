@@ -1,13 +1,18 @@
 import React from 'react';
-import {Button, CssBaseline} from "@mui/material";
+import {Box, Container, Toolbar} from "@mui/material";
+import LoadingBackdrop from "./Components/LoadingBackdrop";
+import {NavBar} from "./Components/NavBar";
+import Router from "./Components/Router";
 
-const App: React.FC = () => {
+export default function App() {
     return (
-        <>
-            <CssBaseline/>
-            <Button variant="contained">Hello World</Button>
-        </>
-    )
-};
-
-export default App;
+        <Container>
+            <LoadingBackdrop/>
+            <NavBar/>
+            <Box sx={{p: 3}}>
+                <Toolbar/>
+                <Router/>
+            </Box>
+        </Container>
+    );
+}
