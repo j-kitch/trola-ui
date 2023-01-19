@@ -3,6 +3,7 @@ import {Box, Button, Menu, MenuItem, Typography} from "@mui/joy";
 import {useAuth0} from "@auth0/auth0-react";
 import {Link} from "react-router-dom";
 import UserAvatar from "./UserAvatar";
+import LightDarkSwitcher from "./LightDarkSwitcher";
 
 export default function AppBar() {
 
@@ -39,6 +40,7 @@ export default function AppBar() {
                     </Link>
                 </>}
             </Box>
+            <LightDarkSwitcher />
             {!auth0.isAuthenticated && <Button onClick={() => auth0.loginWithPopup()}>
                 Login
             </Button>}
