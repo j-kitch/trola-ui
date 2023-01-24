@@ -41,7 +41,7 @@ export default function TeamPage() {
                 <Grid xs={12}>
                     <Breadcrumbs>
                         <Link to="/" style={{ textDecoration: "none" }}>Home</Link>
-                        <Link to="/teams" style={{ textDecoration: "none" }}>Team</Link>
+                        <Link to="/teams" style={{ textDecoration: "none" }}>Teams</Link>
                         <Typography>{team.name}</Typography>
                     </Breadcrumbs>
                 </Grid>
