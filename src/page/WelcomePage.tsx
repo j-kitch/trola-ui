@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from "react";
-import {Button, Sheet, Typography} from "@mui/joy";
+import React from "react";
+import {Box, Button, Typography} from "@mui/joy";
 import useLanguage from "../hook/language";
 import {useAuth0} from "@auth0/auth0-react";
 
@@ -9,7 +9,7 @@ export default function WelcomePage() {
     const auth0 = useAuth0();
 
     return (
-        <Sheet sx={{
+        <Box sx={{
             alignContent: "center",
             mx: "auto",
             py: 20,
@@ -26,6 +26,6 @@ export default function WelcomePage() {
             <Button variant="soft" onClick={() => auth0.loginWithPopup()}>
                 Sign up for free
             </Button>
-        </Sheet>
+        </Box>
     );
 }
