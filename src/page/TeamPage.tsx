@@ -15,7 +15,7 @@ type Params = {
 
 export default function TeamPage() {
 
-    const { id: teamId } = useParams<Params>();
+    const {id: teamId} = useParams<Params>();
     const teams = useTeams();
     const users = useUsers();
     const boards = useBoards();
@@ -40,8 +40,8 @@ export default function TeamPage() {
             <Grid container spacing={2} sx={{flexGrow: 1, marginX: "auto"}}>
                 <Grid xs={12}>
                     <Breadcrumbs>
-                        <Link to="/" style={{ textDecoration: "none" }}>Home</Link>
-                        <Link to="/teams" style={{ textDecoration: "none" }}>Teams</Link>
+                        <Link to="/" style={{textDecoration: "none"}}>Home</Link>
+                        <Link to="/teams" style={{textDecoration: "none"}}>Teams</Link>
                         <Typography>{team.name}</Typography>
                     </Breadcrumbs>
                 </Grid>
@@ -50,8 +50,9 @@ export default function TeamPage() {
                 </Grid>
                 <Grid xs={4}>
                     <Typography textAlign="right">Team Members</Typography>
-                    <AvatarGroup sx={{ p:1 }}>
-                        {usersInTeam.map((m, i) => <UserAvatar key={i} givenName={m.givenName} familyName={m.surname}/>)}
+                    <AvatarGroup sx={{p: 1}}>
+                        {usersInTeam.map((m, i) => <UserAvatar key={i} givenName={m.givenName}
+                                                               familyName={m.surname}/>)}
                     </AvatarGroup>
                 </Grid>
                 <Grid xs={12}>
@@ -60,9 +61,11 @@ export default function TeamPage() {
                 {
                     teamBoards.map(b => (
                         <Grid xs={4} key={b.id}>
-                            <Card variant="outlined" sx={{height: '150px'}}>
-                                <Typography level="h5" textAlign="left">{b.name}</Typography>
-                            </Card>
+                            <Link to={`/teams/${teamId}/boards/${b.id}`} style={{textDecoration: "none"}}>
+                                <Card variant="outlined" sx={{height: '150px'}}>
+                                    <Typography level="h5" textAlign="left">{b.name}</Typography>
+                                </Card>
+                            </Link>
                         </Grid>
                     ))
                 }

@@ -20,6 +20,8 @@ import TeamPage from "./page/TeamPage";
 import NewTeamPage from "./page/NewTeamPage";
 import {TeamProvider} from "./context/TeamContext";
 import {UserProvider} from "./context/UserContext";
+import {BoardProvider} from "./context/BoardContext";
+import BoardPage from "./page/BoardPage";
 
 export default function App() {
     return (
@@ -27,27 +29,32 @@ export default function App() {
             <Auth0Provider {...auth0Configuration}>
                 <TeamProvider>
                     <UserProvider>
-                        <BrowserRouter>
-                            <CssBaseline/>
-                            <Root>
-                                <Header>
-                                    <AppBar/>
-                                </Header>
-                                <NavigateToHome/>
-                                <Main>
-                                    <Routes>
-                                        <Route index element={<IndexPage/>} errorElement={<ErrorPage/>}/>
-                                        <Route path="/welcome" element={<WelcomePage/>} errorElement={<ErrorPage/>}/>
-                                        <Route path="/user" element={<UserPage/>} errorElement={<ErrorPage/>}/>
-                                        <Route path="/teams" element={<TeamsPage/>} errorElement={<ErrorPage/>}/>
-                                        <Route path="/teams/:id" element={<TeamPage/>} errorElement={<ErrorPage/>}/>
-                                        <Route path="/teams/new" element={<NewTeamPage/>} errorElement={<ErrorPage/>}/>
-                                        <Route path="/boards" element={<BoardsPage/>} errorElement={<ErrorPage/>}/>
-                                        <Route path="*" element={<NotFoundPage/>} errorElement={<ErrorPage/>}/>
-                                    </Routes>
-                                </Main>
-                            </Root>
-                        </BrowserRouter>
+                        <BoardProvider>
+                            <BrowserRouter>
+                                <CssBaseline/>
+                                <Root>
+                                    <Header>
+                                        <AppBar/>
+                                    </Header>
+                                    <NavigateToHome/>
+                                    <Main>
+                                        <Routes>
+                                            <Route index element={<IndexPage/>} errorElement={<ErrorPage/>}/>
+                                            <Route path="/welcome" element={<WelcomePage/>}
+                                                   errorElement={<ErrorPage/>}/>
+                                            <Route path="/user" element={<UserPage/>} errorElement={<ErrorPage/>}/>
+                                            <Route path="/teams" element={<TeamsPage/>} errorElement={<ErrorPage/>}/>
+                                            <Route path="/teams/:id" element={<TeamPage/>} errorElement={<ErrorPage/>}/>
+                                            <Route path="/teams/new" element={<NewTeamPage/>}
+                                                   errorElement={<ErrorPage/>}/>
+                                            <Route path="/teams/:teamId/boards/:boardId" element={<BoardPage/>} errorElement={<ErrorPage/>}/>
+                                            <Route path="/boards" element={<BoardsPage/>} errorElement={<ErrorPage/>}/>
+                                            <Route path="*" element={<NotFoundPage/>} errorElement={<ErrorPage/>}/>
+                                        </Routes>
+                                    </Main>
+                                </Root>
+                            </BrowserRouter>
+                        </BoardProvider>
                     </UserProvider>
                 </TeamProvider>
             </Auth0Provider>
