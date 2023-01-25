@@ -14,11 +14,13 @@ const defaultBoards: Board[] = [
                         title: "Implement Markdown support",
                         id: "implement-markdown-support",
                         createdBy: "google-oauth2|109062243924481937759",
+                        body: "I am a ticket"
                     },
                     {
                         title: "Implement Markdown support",
                         id: "implement-markdown-support-2",
                         createdBy: "google-oauth2|109062243924481937759",
+                        body: "I am a ticket"
                     }
                 ]
             },
@@ -30,6 +32,7 @@ const defaultBoards: Board[] = [
                         title: "Implement Markdown support",
                         id: "implement-markdown-support-3",
                         createdBy: "google-oauth2|109062243924481937759",
+                        body: "I am a ticket"
                     }
                 ]
             }
@@ -52,6 +55,7 @@ type List = {
 
 type Ticket = {
     title: string,
+    body: string,
     id: string,
     createdBy: string
 };
