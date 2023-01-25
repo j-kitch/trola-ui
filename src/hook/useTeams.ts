@@ -1,5 +1,7 @@
 // TODO: This is a temporary state tool until we have a backend.
-import {useState} from "react";
+import {useContext, useState} from "react";
+import {v4} from "uuid";
+import {TeamContext} from "../context/TeamContext";
 
 interface Team {
     id: string,
@@ -9,35 +11,28 @@ interface Team {
 
 export default function useTeams() {
 
-    const defaultTeams = [
-        {
-            id: "foo-team-1",
-            name: "Foo Team",
-            members: ["google-oauth2|109062243924481937759", "otherUser"]
-        },
-        {
-            id: "bar-team-2",
-            name: "Bar Team",
-            members: ["google-oauth2|109062243924481937759", "otherUser"]
-        },
-        {
-            id: "zar-team-1",
-            name: "Zar Team",
-            members: ["otherUser"]
-        }
-    ];
-
-    const [teams, setTeams] = useState<Team[]>(defaultTeams);
+    const [teams, setTeams] = useContext(TeamContext);
 
     const addTeam = (team: Team) => {
-        setTeams(oldTeams => [...oldTeams, team]);
+        team.id = v4();
+        console.log(`Old Teams: ${JSON.stringify(teams)}`);
+        const updatedTeams = [...teams, {...team}];
+        console.log(`New Teams: ${JSON.stringify(updatedTeams)}`);
+        setTeams(updatedTeams);
     };
 
-    const getTeam = (id: string) => teams.find(t => t.id === id);
+    const getTeam = (id: string) => {
+        return teams.find(t => t.id === id);
+    };
 
-    const getAll = () => teams;
+    const getAll = () => {
+        return teams;
+    };
 
-    const findUsersTeams = (userId: string) => teams.filter(t => t.members.some(m => m === userId));
+    const findUsersTeams = (userId: string) => {
+        console.log(`current teams are ${JSON.stringify(teams)}`);
+        return teams.filter(t => t.members.some(m => m === userId));
+    }
 
-    return { getTeam, getAll, addTeam, findUsersTeams };
+    return {getTeam, getAll, addTeam, findUsersTeams};
 }

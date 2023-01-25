@@ -16,6 +16,8 @@ export default function TeamsPage() {
     const usersTeams = teams.findUsersTeams(user?.sub!);
     const userUsers = users.getUsers();
 
+    console.log(teams.getAll());
+
     return (
         <Sheet sx={{
             alignContent: "center",
@@ -29,7 +31,7 @@ export default function TeamsPage() {
             <Grid container spacing={2} sx={{flexGrow: 1, marginX: "auto"}}>
                 <Grid xs={12}>
                     <Breadcrumbs>
-                        <Link to="/" style={{ textDecoration: "none" }}>Home</Link>
+                        <Link to="/" style={{textDecoration: "none"}}>Home</Link>
                         <Typography>Teams</Typography>
                     </Breadcrumbs>
                 </Grid>
@@ -47,7 +49,8 @@ export default function TeamsPage() {
                                     </Typography>
                                     <AvatarGroup sx={{pt: 2}}>
                                         {team.members.map(m => userUsers.find(u => u.subject === m)!)
-                                            .map(m => <UserAvatar key={m.subject} givenName={m.givenName} familyName={m.surname}/>)}
+                                            .map(m => <UserAvatar key={m.subject} givenName={m.givenName}
+                                                                  familyName={m.surname}/>)}
                                     </AvatarGroup>
                                 </Card>
                             </Link>
@@ -55,16 +58,18 @@ export default function TeamsPage() {
                     ))
                 }
                 <Grid xs={4}>
-                    <Card variant="soft" sx={{
-                        height: '150px',
-                        display: "flex",
-                        flexDirection: "column",
-                        alignItems: "center",
-                        justifyContent: "center"
-                    }}>
-                        <Add/>
-                        <Typography level="body1">Create a new team</Typography>
-                    </Card>
+                    <Link to="/teams/new" style={{ textDecoration: "none" }}>
+                        <Card variant="soft" sx={{
+                            height: '150px',
+                            display: "flex",
+                            flexDirection: "column",
+                            alignItems: "center",
+                            justifyContent: "center"
+                        }}>
+                            <Add/>
+                            <Typography level="body1">Create a new team</Typography>
+                        </Card>
+                    </Link>
                 </Grid>
             </Grid>
         </Sheet>
