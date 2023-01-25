@@ -1,10 +1,9 @@
 import React from "react";
 import {useParams} from "react-router";
-import {Card, Grid, Sheet, Typography} from "@mui/joy";
+import {AvatarGroup, Breadcrumbs, Card, Grid, Sheet, Typography} from "@mui/joy";
 import useTeams from "../hook/useTeams";
 import useUsers from "../hook/useUsers";
 import UserAvatar from "../component/UserAvatar";
-import {AvatarGroup, Breadcrumbs} from "@mui/material";
 import useBoards from "../hook/useBoards";
 import Add from "@mui/icons-material/Add";
 import {Link} from "react-router-dom";
