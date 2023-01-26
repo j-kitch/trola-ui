@@ -1,9 +1,9 @@
 import React from "react";
 import {useParams} from "react-router";
-import useBoards from "../hook/useBoards";
+import useBoards from "../../hook/useBoards";
 import {Grid, Sheet, Typography} from "@mui/joy";
-import TicketList from "./BoardPage/TicketList";
-import NewTicketList from "./BoardPage/NewTicketList";
+import TicketList from "./TicketList";
+import NewTicketList from "./NewTicketList";
 
 type Params = {
     teamId: string

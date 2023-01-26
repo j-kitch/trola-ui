@@ -3,6 +3,7 @@ import Add from "@mui/icons-material/Add";
 import React, {useState} from "react";
 import {List} from "../../context/BoardContext";
 import NewTicketModal from "./NewTicketModal";
+import TicketCard from "./TicketCard";
 
 interface ListProps {
     list: List,
@@ -11,17 +12,15 @@ interface ListProps {
 
 export default function TicketList({list, idx}: ListProps) {
 
-    const [openTicketModal, setOpenTicketModal] = useState<number | null>(null);
+    const [openTicketModal, setOpenTicketModal] = useState<boolean>(false);
 
     return (
         <Grid xs={3} key={list.id}>
             <NewTicketModal idx={idx} openTicketModal={openTicketModal} setOpenTicketModal={setOpenTicketModal}/>
             <Card variant="soft" sx={{minHeight: '100px', display: "flex", gap: 2}}>
                 <Typography level="h5">{list.name}</Typography>
-                {list.tickets.map((ticket, idx) => (
-                    <Card variant="outlined" sx={{height: '100px'}} key={`${list.id}${ticket.id}`}>
-                        <Typography>{ticket.title}</Typography>
-                    </Card>
+                {list.tickets.map((ticket) => (
+                    <TicketCard key={`${list.id}${ticket.id}`} ticket={ticket} />
                 ))}
                 <Card variant="outlined" sx={{
                     height: '50px',
@@ -29,7 +28,7 @@ export default function TicketList({list, idx}: ListProps) {
                     flexDirection: "column",
                     alignItems: "center",
                     justifyContent: "center"
-                }} onClick={() => setOpenTicketModal(idx)}>
+                }} onClick={() => setOpenTicketModal(true)}>
                     <Add/>
                 </Card>
             </Card>

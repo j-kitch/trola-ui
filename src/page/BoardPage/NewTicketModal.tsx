@@ -8,8 +8,8 @@ import {useParams} from "react-router";
 
 interface Props {
     idx: number,
-    openTicketModal: number | null,
-    setOpenTicketModal: Dispatch<SetStateAction<number | null>>
+    openTicketModal: boolean,
+    setOpenTicketModal: Dispatch<SetStateAction<boolean>>
 }
 
 type Params = {
@@ -39,13 +39,13 @@ export default function NewTicketModal({idx, openTicketModal, setOpenTicketModal
     };
 
     const onCloseTicketModal = () => {
-        setOpenTicketModal(null);
+        setOpenTicketModal(false);
         setTicketTitle("");
         setTicketBody("");
     };
 
     return (
-        <Modal open={openTicketModal !== null} onClose={() => onCloseTicketModal()}>
+        <Modal open={openTicketModal} onClose={() => onCloseTicketModal()}>
             <ModalDialog sx={{width: "700px"}}>
                 <ModalClose/>
                 <Typography level="h3">Create a new ticket</Typography>
