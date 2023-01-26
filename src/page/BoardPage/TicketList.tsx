@@ -1,4 +1,4 @@
-import {Card, Grid, Typography} from "@mui/joy";
+import {Box, Card, Grid, Typography} from "@mui/joy";
 import Add from "@mui/icons-material/Add";
 import React, {useState} from "react";
 import {List} from "../../context/BoardContext";
@@ -18,7 +18,9 @@ export default function TicketList({list, idx}: ListProps) {
     return (
         <Draggable draggableId={list.id} index={idx}>
             {(draggableProvided) => (
-                <Grid xs={3} key={list.id} ref={draggableProvided.innerRef} {...draggableProvided.draggableProps}>
+                <Box key={list.id} ref={draggableProvided.innerRef} {...draggableProvided.draggableProps} sx={{
+                    width: "260px"
+                }}>
                     <NewTicketModal idx={idx} openTicketModal={openTicketModal}
                                     setOpenTicketModal={setOpenTicketModal}/>
                     <Droppable droppableId={list.id} type='ticket' direction='vertical'>
@@ -41,7 +43,7 @@ export default function TicketList({list, idx}: ListProps) {
                             </Card>
                         )}
                     </Droppable>
-                </Grid>
+                </Box>
             )}
         </Draggable>
     );

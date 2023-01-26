@@ -1,7 +1,7 @@
 import React from "react";
 import {useParams} from "react-router";
 import useBoards from "../../hook/useBoards";
-import {Grid, Sheet, Typography} from "@mui/joy";
+import {Sheet, Typography} from "@mui/joy";
 import TicketList from "./TicketList";
 import NewTicketList from "./NewTicketList";
 import {DragDropContext, Droppable, DropResult} from "react-beautiful-dnd";
@@ -43,24 +43,23 @@ export default function BoardPage() {
             alignContent: "center",
             mx: "auto",
             py: 10,
+            paddingX: 20,
             textAlign: "left",
-            width: 1000,
             display: "flex",
             gap: 5,
+            overflow: "hidden"
         }}>
             <DragDropContext onDragEnd={onDragEnd}>
                 <Droppable droppableId='board' type='list' direction='horizontal'>
                     {(provided) => (
-                        <Grid container spacing={2} sx={{flexGrow: 1, marginX: "auto"}} ref={provided.innerRef} {...provided.droppableProps}>
-                            <Grid xs={12}>
-                                <Typography level="h2">{board.name}</Typography>
-                            </Grid>
-                            {board.lists.map((list, idx) => (<TicketList key={list.id} list={list} idx={idx}/>))}
-                            {provided.placeholder}
-                            <Grid xs={3}>
-                                <NewTicketList/>
-                            </Grid>
-                        </Grid>
+                        <Sheet sx={{flexGrow: 1, marginX: "auto"}} ref={provided.innerRef} {...provided.droppableProps}>
+                            <Typography level="h2">{board.name}</Typography>
+                            <Sheet sx={{ display: "flex", overflowX: "scroll", overflowY: "hidden", flexDirection: "row", flexWrap: "nowrap", gap: 2, py: 2 }}>
+                                {board.lists.map((list, idx) => (<TicketList key={list.id} list={list} idx={idx}/>))}
+                                {provided.placeholder}
+                            <NewTicketList/>
+                            </Sheet>
+                        </Sheet>
                     )}
                 </Droppable>
             </DragDropContext>
