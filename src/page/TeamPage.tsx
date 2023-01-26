@@ -46,7 +46,7 @@ export default function TeamPage() {
                 </Grid>
                 <Grid xs={4}>
                     <Typography textAlign="right">Team Members</Typography>
-                    <AvatarGroup sx={{p: 1}}>
+                    <AvatarGroup sx={{p: 1, justifyContent:"end"}}>
                         {usersInTeam.map((m, i) => <UserAvatar key={i} givenName={m.givenName}
                                                                familyName={m.surname}/>)}
                     </AvatarGroup>
