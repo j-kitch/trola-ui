@@ -36,8 +36,13 @@ export default function TicketModal({ticket, isOpen, onClose}: Props) {
         setIsEditing(false);
     };
 
+    const onModalClose = () => {
+        onCancel();
+        onClose();
+    };
+
     return (
-        <Modal open={isOpen} onClose={onClose}>
+        <Modal open={isOpen} onClose={onModalClose}>
             <ModalDialog sx={{width: "700px"}}>
                 <ModalClose/>
                 <Stack>
