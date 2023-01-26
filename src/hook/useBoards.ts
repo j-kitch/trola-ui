@@ -18,6 +18,16 @@ export default function useBoards() {
         }));
     }
 
+    function editTicket(teamId: string, boardId: string, ticket: Ticket) {
+        setBoards(produce(boards => {
+            let tick = boards.flatMap(b => b.lists)
+                .flatMap(l => l.tickets)
+                .find(t => t.id === ticket.id)!;
+            tick.title = ticket.title;
+            tick.body = ticket.body;
+        }));
+    }
+
     function addList(teamId: string, boardId: string, listName: string) {
         setBoards(produce(oldBoards => {
             let board = oldBoards.find(b => b.id === boardId && b.teamId === teamId)!;
@@ -52,6 +62,7 @@ export default function useBoards() {
         getBoards: () => boards,
         getBoard,
         addTicket,
+        editTicket,
         addList,
         moveList,
         moveTicket,

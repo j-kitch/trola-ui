@@ -18,8 +18,6 @@ export default function BoardPage() {
     const boards = useBoards();
     const board = boards.getBoard(teamId!, boardId!)!;
 
-    console.log(`ReRendered BoardPage with lists ${board.lists.map(l => l.name)}`);
-
     const onDragEnd = (result: DropResult) => {
         if (result.reason === "CANCEL" || !result.destination) {
             return;
@@ -52,7 +50,11 @@ export default function BoardPage() {
             <DragDropContext onDragEnd={onDragEnd}>
                 <Droppable droppableId='board' type='list' direction='horizontal'>
                     {(provided) => (
-                        <Sheet sx={{flexGrow: 1, marginX: "auto"}} ref={provided.innerRef} {...provided.droppableProps}>
+                        <Sheet sx={{
+                            flexGrow: 1,
+                            marginX: "auto",
+                        }}
+                               ref={provided.innerRef} {...provided.droppableProps}>
                             <Typography level="h2">{board.name}</Typography>
                             <Sheet sx={{ display: "flex", overflowX: "scroll", overflowY: "hidden", flexDirection: "row", flexWrap: "nowrap", gap: 2, py: 2 }}>
                                 {board.lists.map((list, idx) => (<TicketList key={list.id} list={list} idx={idx}/>))}
