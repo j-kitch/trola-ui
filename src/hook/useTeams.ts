@@ -15,9 +15,7 @@ export default function useTeams() {
 
     const addTeam = (team: Team) => {
         team.id = v4();
-        console.log(`Old Teams: ${JSON.stringify(teams)}`);
         const updatedTeams = [...teams, {...team}];
-        console.log(`New Teams: ${JSON.stringify(updatedTeams)}`);
         setTeams(updatedTeams);
     };
 
@@ -30,7 +28,6 @@ export default function useTeams() {
     };
 
     const findUsersTeams = (userId: string) => {
-        console.log(`current teams are ${JSON.stringify(teams)}`);
         return teams.filter(t => t.members.some(m => m === userId));
     }
 

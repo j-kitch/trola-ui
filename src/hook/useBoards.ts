@@ -11,7 +11,6 @@ export default function useBoards() {
     }
 
     function addTicket(teamId: string, boardId: string, listIndex: number, ticket: Ticket) {
-        console.log(`addTicket(${JSON.stringify({teamId, boardId, listIndex, ticket})})`)
         setBoards(oldBoards => {
             let board = oldBoards.find(b => b.id === boardId && b.teamId === teamId)!;
             board.lists[listIndex].tickets.push(ticket);
@@ -20,7 +19,6 @@ export default function useBoards() {
     }
 
     function addList(teamId: string, boardId: string, listName: string) {
-        console.log(`addList(${teamId}, ${boardId}, ${listName})`);
         setBoards(oldBoards => {
             let board = oldBoards.find(b => b.id === boardId && b.teamId === teamId)!;
             board.lists.push({

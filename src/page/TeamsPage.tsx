@@ -16,8 +16,6 @@ export default function TeamsPage() {
     const usersTeams = teams.findUsersTeams(user?.sub!);
     const userUsers = users.getUsers();
 
-    console.log(teams.getAll());
-
     return (
         <Sheet sx={{
             alignContent: "center",

@@ -23,9 +23,6 @@ export default function TeamPage() {
     const usersInTeam = users.getUsers().filter(u => team.members.some(m => m === u.subject));
     const teamBoards = boards.getBoards().filter(b => b.teamId === teamId);
 
-    console.log(`teamBoards: ${JSON.stringify(teamBoards)}`)
-    console.log(`teamBoards: ${teamBoards.length}`)
-
     return (
         <Sheet sx={{
             alignContent: "center",
