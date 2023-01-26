@@ -18,6 +18,8 @@ export default function BoardPage() {
     const boards = useBoards();
     const board = boards.getBoard(teamId!, boardId!)!;
 
+    console.log(`ReRendered BoardPage with lists ${board.lists.map(l => l.name)}`);
+
     const onDragEnd = (result: DropResult) => {
         if (result.reason === "CANCEL" || !result.destination) {
             return;

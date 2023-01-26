@@ -1,6 +1,7 @@
 import {useContext, useState} from "react";
 import {Board, BoardContext, Ticket} from "../context/BoardContext";
 import {v4} from "uuid";
+import produce from "immer";
 
 export default function useBoards() {
 
@@ -11,44 +12,40 @@ export default function useBoards() {
     }
 
     function addTicket(teamId: string, boardId: string, listIndex: number, ticket: Ticket) {
-        setBoards(oldBoards => {
-            let board = oldBoards.find(b => b.id === boardId && b.teamId === teamId)!;
+        setBoards(produce(boards => {
+            let board = boards.find(b => b.id === boardId && b.teamId === teamId)!;
             board.lists[listIndex].tickets.push(ticket);
-            return oldBoards;
-        });
+        }));
     }
 
     function addList(teamId: string, boardId: string, listName: string) {
-        setBoards(oldBoards => {
+        setBoards(produce(oldBoards => {
             let board = oldBoards.find(b => b.id === boardId && b.teamId === teamId)!;
             board.lists.push({
                 id: v4(),
                 name: listName,
                 tickets: [],
             });
-            return oldBoards;
-        })
+        }));
     }
 
     function moveList(teamId: string, boardId: string, listId: string, destinationIndex: number) {
-        setBoards(boards => {
+        setBoards(produce(boards => {
             const board = boards.find(b => b.teamId === teamId && b.id === boardId)!;
             const sourceIndex = board.lists.findIndex(l => l.id === listId);
             const removedList = board.lists.splice(sourceIndex, 1);
             board.lists.splice(destinationIndex, 0, ...removedList);
-            return boards;
-        });
+        }));
     }
 
     function moveTicket(teamId: string, boardId: string, ticketId: string, sourceId: string, sourceIndex: number, destinationId: string, destinationIndex: number) {
-        setBoards(boards => {
+        setBoards(produce(boards => {
             const board = boards.find(b => b.teamId === teamId && b.id === boardId)!;
             const sourceList = board.lists.find(l => l.id === sourceId)!;
             const destinationList = board.lists.find(l => l.id === destinationId)!;
             const removedTicket = sourceList.tickets.splice(sourceIndex, 1);
             destinationList.tickets.splice(destinationIndex, 0, ...removedTicket);
-            return boards;
-        });
+        }));
     }
 
     return {
