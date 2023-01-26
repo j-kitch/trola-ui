@@ -32,10 +32,21 @@ export default function useBoards() {
         })
     }
 
+    function moveList(teamId: string, boardId: string, listId: string, destinationIndex: number) {
+        setBoards(boards => {
+            const board = boards.find(b => b.teamId === teamId && b.id === boardId)!;
+            const sourceIndex = board.lists.findIndex(l => l.id === listId);
+            const removedList = board.lists.splice(sourceIndex, 1);
+            board.lists.splice(destinationIndex, 0, ...removedList);
+            return boards;
+        });
+    }
+
     return {
         getBoards: () => boards,
         getBoard,
         addTicket,
         addList,
+        moveList,
     };
 }

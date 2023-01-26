@@ -4,6 +4,7 @@ import useBoards from "../../hook/useBoards";
 import {Grid, Sheet, Typography} from "@mui/joy";
 import TicketList from "./TicketList";
 import NewTicketList from "./NewTicketList";
+import {DragDropContext, Droppable, DropResult} from "react-beautiful-dnd";
 
 type Params = {
     teamId: string
@@ -17,6 +18,17 @@ export default function BoardPage() {
     const boards = useBoards();
     const board = boards.getBoard(teamId!, boardId!)!;
 
+    const onDragEnd = (result: DropResult) => {
+        if (result.reason === "CANCEL") {
+            return;
+        }
+        if (result.type === "list") {
+            const destinationIndex = result.destination?.index!;
+            const listId = result.draggableId;
+            boards.moveList(teamId!, boardId!, listId, destinationIndex);
+        }
+    };
+
     return (
         <Sheet sx={{
             alignContent: "center",
@@ -27,15 +39,22 @@ export default function BoardPage() {
             display: "flex",
             gap: 5,
         }}>
-            <Grid container spacing={2} sx={{flexGrow: 1, marginX: "auto"}}>
-                <Grid xs={12}>
-                    <Typography level="h2">{board.name}</Typography>
-                </Grid>
-                {board.lists.map((list, idx) => (<TicketList key={list.id} list={list} idx={idx}/>))}
-                <Grid xs={3}>
-                    <NewTicketList/>
-                </Grid>
-            </Grid>
+            <DragDropContext onDragEnd={onDragEnd}>
+                <Droppable droppableId='board' type='list' direction='horizontal'>
+                    {(provided) => (
+                        <Grid container spacing={2} sx={{flexGrow: 1, marginX: "auto"}} ref={provided.innerRef} {...provided.droppableProps}>
+                            <Grid xs={12}>
+                                <Typography level="h2">{board.name}</Typography>
+                            </Grid>
+                            {board.lists.map((list, idx) => (<TicketList key={list.id} list={list} idx={idx}/>))}
+                            {provided.placeholder}
+                            <Grid xs={3}>
+                                <NewTicketList/>
+                            </Grid>
+                        </Grid>
+                    )}
+                </Droppable>
+            </DragDropContext>
         </Sheet>
     );
 }
