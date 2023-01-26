@@ -1,6 +1,6 @@
-# Tróla UI
+# Trolá UI
 
-Tróla is a trello clone built as a personal project, **trola-ui** is the user interface
+Trolá is a trello clone built as a personal project, **trola-ui** is the user interface
 built in React.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
