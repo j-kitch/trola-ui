@@ -40,6 +40,8 @@ export default function TicketModal({ticket, isOpen, onClose}: Props) {
     const board = boards.getBoard(teamId!, boardId!)!;
     const list = board.lists.find(l => l.tickets.some(t => t.id === ticket.id))!;
 
+    const [listId, setListId] = useState(list.id);
+
     const onCancel = () => {
         setIsEditing(false);
         setTitle(ticket.title);
@@ -48,7 +50,7 @@ export default function TicketModal({ticket, isOpen, onClose}: Props) {
 
     const onSave = () => {
         const newTicket = {...ticket, title, body};
-        boards.editTicket(teamId!, boardId!, newTicket);
+        boards.editTicket(teamId!, boardId!, listId, newTicket);
         setIsEditing(false);
     };
 
@@ -77,7 +79,7 @@ export default function TicketModal({ticket, isOpen, onClose}: Props) {
                                         <Input variant="plain" value={title}
                                                sx={{fontSize: theme.fontSize.xl2}}
                                                onChange={e => setTitle(e.target.value)}/>
-                                        <Select variant="plain" defaultValue={list.id}>
+                                        <Select variant="plain" defaultValue={listId} value={listId} onChange={(_, value) => setListId(String(value))}>
                                             {board.lists.map((list, idx) => (
                                                 <Option key={list.id} value={list.id}>{list.name}</Option>
                                             ))}

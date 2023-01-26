@@ -1,5 +1,5 @@
 import {useContext, useState} from "react";
-import {Board, BoardContext, Ticket} from "../context/BoardContext";
+import {Board, BoardContext, List, Ticket} from "../context/BoardContext";
 import {v4} from "uuid";
 import produce from "immer";
 
@@ -18,13 +18,21 @@ export default function useBoards() {
         }));
     }
 
-    function editTicket(teamId: string, boardId: string, ticket: Ticket) {
+    function editTicket(teamId: string, boardId: string, listId: string, ticket: Ticket) {
         setBoards(produce(boards => {
-            let tick = boards.flatMap(b => b.lists)
-                .flatMap(l => l.tickets)
-                .find(t => t.id === ticket.id)!;
-            tick.title = ticket.title;
-            tick.body = ticket.body;
+            let board = boards.find(b => b.teamId === teamId && b.id === boardId)!;
+            let oldList = board.lists.find(l => l.tickets.some(t => t.id === ticket.id))!;
+            let oldTicket = oldList.tickets.find(t => t.id === ticket.id)!;
+
+            oldTicket.title = ticket.title;
+            oldTicket.body = ticket.body;
+
+            if (oldList.id !== listId) {
+                const oldTicketIndex = oldList.tickets.findIndex(t => t.id === ticket.id);
+                oldList.tickets.splice(oldTicketIndex, 1);
+                const newList = board.lists.find(l => l.id === listId)!;
+                newList.tickets.push(oldTicket);
+            }
         }));
     }
 
