@@ -19,13 +19,20 @@ export default function BoardPage() {
     const board = boards.getBoard(teamId!, boardId!)!;
 
     const onDragEnd = (result: DropResult) => {
-        if (result.reason === "CANCEL") {
+        if (result.reason === "CANCEL" || !result.destination) {
             return;
         }
         if (result.type === "list") {
             const destinationIndex = result.destination?.index!;
             const listId = result.draggableId;
             boards.moveList(teamId!, boardId!, listId, destinationIndex);
+        } else if (result.type === 'ticket') {
+            const ticketId = result.draggableId;
+            const sourceId = result.source.droppableId;
+            const sourceIndex = result.source.index;
+            const destinationId = result.destination?.droppableId!;
+            const destinationIndex = result.destination?.index;
+            boards.moveTicket(teamId!, boardId!, ticketId, sourceId, sourceIndex, destinationId, destinationIndex);
         }
     };
 

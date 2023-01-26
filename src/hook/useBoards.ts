@@ -42,11 +42,23 @@ export default function useBoards() {
         });
     }
 
+    function moveTicket(teamId: string, boardId: string, ticketId: string, sourceId: string, sourceIndex: number, destinationId: string, destinationIndex: number) {
+        setBoards(boards => {
+            const board = boards.find(b => b.teamId === teamId && b.id === boardId)!;
+            const sourceList = board.lists.find(l => l.id === sourceId)!;
+            const destinationList = board.lists.find(l => l.id === destinationId)!;
+            const removedTicket = sourceList.tickets.splice(sourceIndex, 1);
+            destinationList.tickets.splice(destinationIndex, 0, ...removedTicket);
+            return boards;
+        });
+    }
+
     return {
         getBoards: () => boards,
         getBoard,
         addTicket,
         addList,
         moveList,
+        moveTicket,
     };
 }
