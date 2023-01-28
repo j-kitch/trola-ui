@@ -23,7 +23,7 @@ const LoginButton: FC<Props> = ({isVisible}) => {
                             border-2 border-gray-100 border-opacity-30 hover:border-white
                             hover:bg-white hover:text-blue-600 transition-all
                             bg-opacity-50 rounded-2xl
-                            w-auto transition-opacity ease-in-out duration-1000 ${visibleClass}`}>
+                            transition-opacity ease-in-out duration-1000 ${visibleClass}`}>
             Login or Sign Up
         </button>
     );
