@@ -1,4 +1,5 @@
 import React, {FC, useEffect, useState} from 'react';
+import LoginButton from "./LoginButton";
 
 const App: FC = () => {
 
@@ -12,11 +13,14 @@ const App: FC = () => {
 
     return (
         <div className="flex h-screen w-screen bg-gradient-to-br from-cyan-400 to-blue-600 justify-center items-center">
-            <h1 className="text-white text-7xl">
+            <div className="flex flex-col gap-4 justify-center items-center">
+                <h1 className="text-white text-7xl">
                 <span className={`${opacityClass} transition-opacity ease-in-out duration-1000`}>
                     Welcome to Trolá!
                 </span>
-            </h1>
+                </h1>
+                <LoginButton/>
+            </div>
         </div>
     );
 };
