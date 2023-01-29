@@ -1,13 +1,26 @@
 import React, {FC} from "react";
 import {useAuth0} from "@auth0/auth0-react";
+import {useQuery} from "react-query";
+import useApi from "../../hooks/useApi";
 
 const HomePage: FC = () => {
 
     const auth0 = useAuth0();
+    const api = useApi();
+    const userQuery = useQuery("currentUser", api.getCurrentUser);
+
+    if (userQuery.data) {
+        return (
+            <div>
+                Hello, {userQuery.data.givenName}
+                <button onClick={() => auth0.logout()}>Logout</button>
+            </div>
+        )
+    }
 
     return (
         <div>
-            Hello, {auth0.user?.given_name!}
+            Welcome to Trolá, new user!
             <button onClick={() => auth0.logout()}>Logout</button>
         </div>
     );
