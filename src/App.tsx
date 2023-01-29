@@ -8,6 +8,7 @@ import LoadingScreen from "./component/LoadingScreen";
 import {QueryClientProvider} from "react-query";
 import queryClient from "./utility/queryClient";
 import {ReactQueryDevtools} from "react-query/devtools";
+import SignUpPage from "./page/SignUpPage";
 
 const App: FC = () => (
     <Auth0Provider
@@ -24,6 +25,7 @@ const App: FC = () => (
                 <Routes>
                     <Route path="/home" element={<HomePage/>}/>
                     <Route path="/welcome" element={<WelcomePage/>}/>
+                    <Route path="/sign-up" element={<SignUpPage/>}/>
                 </Routes>
             </BrowserRouter>
             <ReactQueryDevtools initialIsOpen={false}/>
