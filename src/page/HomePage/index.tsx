@@ -7,7 +7,7 @@ const HomePage: FC = () => {
 
     const auth0 = useAuth0();
     const api = useApi();
-    const userQuery = useQuery("currentUser", api.getCurrentUser);
+    const userQuery = useQuery("currentUser", api.findUserBySubject(auth0.user?.sub || ''));
 
     if (userQuery.data) {
         return (

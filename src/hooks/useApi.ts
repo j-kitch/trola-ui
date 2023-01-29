@@ -24,10 +24,10 @@ const useApi = () => {
         };
     };
 
-    const getCurrentUser = restCall(axios => axios.get<User>("/user"));
+    const findUserBySubject = (subject: string) => restCall(axios => axios.get<User>(`/users/${subject}`));
 
     return {
-        getCurrentUser,
+        findUserBySubject,
     };
 };
 
