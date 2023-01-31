@@ -3,10 +3,17 @@ import restClient from "../utility/restClient";
 import {AxiosInstance, AxiosResponse} from "axios";
 
 interface User {
-    id: string
+    subject: string
     givenName: string
     familyName: string
     emailAddress: string
+}
+
+interface Project {
+    name: string
+    key: string
+    members: string[]
+    owner: string
 }
 
 const useApi = () => {
@@ -26,9 +33,24 @@ const useApi = () => {
 
     const findUserBySubject = (subject: string) => restCall(axios => axios.get<User>(`/users/${subject}`));
 
+    const findProject = (id: string) => restCall(axios => axios.get<Project>(`/projects/${id}`));
+
+    const createUser = () => (user: User) => {
+        console.log(`createUser ${JSON.stringify(user)}`);
+        return restCall(axios => axios.post("/users", user)).call(user);
+    }
+
+    const createProject = () => (project: Project) => {
+        return restCall(axios => axios.post("/projects", project)).call(project);
+    };
+
     return {
         findUserBySubject,
+        findProject,
+        createUser,
+        createProject,
     };
 };
 
 export default useApi;
+export type {User, Project};

@@ -9,6 +9,7 @@ import {QueryClientProvider} from "react-query";
 import queryClient from "./utility/queryClient";
 import {ReactQueryDevtools} from "react-query/devtools";
 import SignUpPage from "./page/SignUpPage";
+import ProjectPage from "./page/ProjectPage";
 
 const App: FC = () => (
     <Auth0Provider
@@ -26,6 +27,7 @@ const App: FC = () => (
                     <Route path="/home" element={<HomePage/>}/>
                     <Route path="/welcome" element={<WelcomePage/>}/>
                     <Route path="/sign-up" element={<SignUpPage/>}/>
+                    <Route path="/projects/:projectKey" element={<ProjectPage/>}/>
                 </Routes>
             </BrowserRouter>
             <ReactQueryDevtools initialIsOpen={false}/>

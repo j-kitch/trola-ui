@@ -1,4 +1,4 @@
-import React, {FC} from "react";
+import React, {FC, useEffect} from "react";
 import {useAuth0} from "@auth0/auth0-react";
 import {useQuery} from "react-query";
 import useApi from "../../hooks/useApi";
@@ -11,12 +11,17 @@ const HomePage: FC = () => {
     const userQuery = useQuery("currentUser", api.findUserBySubject(auth0.user?.sub || ''));
     const navigate = useNavigate();
 
-    if (userQuery.data === null) {
-        navigate("/sign-up");
-    }
+    useEffect(() => {
+        if (userQuery.isSuccess && userQuery.data === null) {
+            navigate("/sign-up");
+        }
+    }, [userQuery]);
 
     return (
-        <div>Hello user ${userQuery.data?.givenName}</div>
+        <>
+            <div>Hello user ${userQuery.data?.givenName}</div>
+            <button onClick={() => auth0.logout()}>Logout</button>
+        </>
     );
 };
 
