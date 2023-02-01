@@ -1,4 +1,4 @@
-import App from "./App";
-import AppEnv from "./AppEnv";
+import App from './App';
+import AppEnv from './AppEnv';
 
 export { App, AppEnv };
