@@ -21,5 +21,13 @@ module.exports = {
   plugins: ['react', '@typescript-eslint', 'prettier'],
   rules: {
     'react/react-in-jsx-scope': 0, // React is not required anymore, this rule is outdated.
+    "overrides": [
+      {
+        files:["*.test.{ts,tsx}", "*.config.ts"],
+        rules: {
+          "import/no-extraneous-dependencies": 0
+        }
+      }
+    ]
   },
 };
