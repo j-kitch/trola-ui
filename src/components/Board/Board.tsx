@@ -9,14 +9,45 @@ interface Props {
 
 const List: FC<Props> = ({ index, id }) => {
   return (
-    <Draggable draggableId={id} index={index} key={index}>
+    <Draggable draggableId={`list-${id}`} index={index} key={index}>
       {(provided) => (
         <div
           ref={provided.innerRef}
           {...provided.draggableProps}
           className={classes.list}
         >
-          <div {...provided.dragHandleProps}>Foo</div>
+          <div {...provided.dragHandleProps} className={classes.listHeader}>
+            Foo
+          </div>
+          <Droppable
+            droppableId={`list-${id}`}
+            type="ticket"
+            direction="vertical"
+          >
+            {(drop) => (
+              <div
+                ref={drop.innerRef}
+                {...drop.droppableProps}
+                className={classes.ticketContainer}
+              >
+                {[0, 1, 2, 3, 4].map((i) => (
+                  <Draggable draggableId={`ticket-${id}-${i}`} index={i} key={i}>
+                    {(drag) => (
+                      <div
+                        ref={drag.innerRef}
+                        {...drag.draggableProps}
+                        {...drag.dragHandleProps}
+                        className={classes.ticket}
+                      >
+                        Ticket {i}
+                      </div>
+                    )}
+                  </Draggable>
+                ))}
+                {drop.placeholder}
+              </div>
+            )}
+          </Droppable>
         </div>
       )}
     </Draggable>
@@ -30,7 +61,7 @@ const Board: FC = () => {
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
-      <Droppable droppableId="droppable-1" direction="horizontal">
+      <Droppable droppableId="droppable-1" type="list" direction="horizontal">
         {(drop) => (
           <div
             ref={drop.innerRef}
