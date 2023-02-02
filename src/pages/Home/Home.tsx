@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import Board from '../../components/Board';
 import Header from '../../components/Header';
 import Layout from '../../components/Layout';
 import SideBar from '../../components/SideBar';
@@ -15,7 +16,7 @@ const Home: FC = () => {
             <SideBar/>
         </Layout.SideBar>
         <Layout.Main>
-            <h1>Hello World</h1>
+            <Board/>
         </Layout.Main>
     </Layout.Base>
   );
