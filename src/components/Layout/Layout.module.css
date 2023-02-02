@@ -1,0 +1,25 @@
+.base {
+    min-width: 100vw;
+    min-height: 100vh;
+
+    display: grid;
+    grid-template-rows: 4rem 1fr;
+    grid-template-columns: 16rem 1fr;
+    grid-template-areas: 
+        "header header header"
+        "sidebar main main";
+
+    background-color: var(--bg-color);
+}
+
+.header {
+    grid-area: header;
+}
+
+.sidebar {
+    grid-area: sidebar;
+}
+
+.main {
+    grid-area: main;
+}
