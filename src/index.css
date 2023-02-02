@@ -2,7 +2,7 @@
     --bg-color: hsl(0, 0%, 100%);
     --border-color: hsl(0, 0%, 80%);
     --primary-color: hsl(219, 100%, 58%);
-
+    --highlight-color: hsla(219, 100%, 58%, 0.2);
 
     --text-xl: 1.5rem;
     --text-lg: 1rem;

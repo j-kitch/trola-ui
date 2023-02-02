@@ -1,9 +1,9 @@
-import { FC, useState } from 'react';
+import { FC, ReactNode, useState } from 'react';
 import useClickOutside from '../../hooks/useClickOutside';
 import classes from './Header.module.css';
 
 interface Props {
-  children: JSX.Element;
+  children: ReactNode
 }
 
 const Button: FC<Props> = ({ children }) => {
