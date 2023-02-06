@@ -1,14 +1,18 @@
-import { FC, ReactNode } from 'react';
+import { Dispatch, FC, ReactNode, SetStateAction, useState } from 'react';
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
+import useClickOutside from '../../hooks/useClickOutside';
 import { Breadcrumb, Breadcrumbs } from '../Breadcrumbs/Breadcrumbs';
+import TicketModal from '../TicketModal';
 import classes from './Board.module.css';
+import Ticket from './Ticket';
 
 interface Props {
   index: number;
   id: string;
+  setModalVisible: Dispatch<SetStateAction<boolean>>;
 }
 
-const List: FC<Props> = ({ index, id }) => {
+const List: FC<Props> = ({ index, id, setModalVisible }) => {
   return (
     <Draggable draggableId={`list-${id}`} index={index} key={index}>
       {(provided) => (
@@ -40,14 +44,7 @@ const List: FC<Props> = ({ index, id }) => {
                       key={i}
                     >
                       {(drag) => (
-                        <div
-                          ref={drag.innerRef}
-                          {...drag.draggableProps}
-                          {...drag.dragHandleProps}
-                          className={classes.ticket}
-                        >
-                          Ticket {i}
-                        </div>
+                        <Ticket provided={drag} i={i} />
                       )}
                     </Draggable>
                   ))}
@@ -63,19 +60,18 @@ const List: FC<Props> = ({ index, id }) => {
 };
 
 const Board: FC = () => {
+  const [modalVisible, setModalVisible] = useState(false);
+
   const onDragEnd = () => {
-    console.log('onDragEnd');
   };
 
   return (
     <div className={classes.container}>
       <Breadcrumbs>
-        <Breadcrumb title="Projects"/>
-        <Breadcrumb title="Foo Project"/>
+        <Breadcrumb key={1} title="Projects" />
+        <Breadcrumb key={2} title="Foo Project" />
       </Breadcrumbs>
-      <div className={classes.title}>
-        Foo Project
-      </div>
+      <div className={classes.title}>Foo Project</div>
       <DragDropContext onDragEnd={onDragEnd}>
         <Droppable droppableId="droppable-1" type="list" direction="horizontal">
           {(drop) => (
@@ -85,7 +81,12 @@ const Board: FC = () => {
               className={classes.board}
             >
               {[0, 1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
-                <List id={String(i)} index={i} key={i} />
+                <List
+                  id={String(i)}
+                  index={i}
+                  key={i}
+                  setModalVisible={setModalVisible}
+                />
               ))}
               {drop.placeholder}
             </div>
