@@ -1,3 +1,3 @@
-import TrolaLogo from "./TrolaLogo";
+import TrolaLogo from './TrolaLogo';
 
 export default TrolaLogo;

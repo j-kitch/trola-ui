@@ -1,3 +1,3 @@
-import ModalBackground from "./ModalBackground";
+import ModalBackground from './ModalBackground';
 
 export default ModalBackground;

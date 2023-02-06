@@ -3,7 +3,7 @@ import useClickOutside from '../../hooks/useClickOutside';
 import classes from './Header.module.css';
 
 interface Props {
-  children: ReactNode
+  children: ReactNode;
 }
 
 const Button: FC<Props> = ({ children }) => {

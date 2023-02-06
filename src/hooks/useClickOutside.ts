@@ -1,6 +1,9 @@
 import React, { useEffect, useRef } from 'react';
 
-const useClickOutside = <T extends HTMLElement>(ctx: string, callback: () => void) => {
+const useClickOutside = <T extends HTMLElement>(
+  ctx: string,
+  callback: () => void
+) => {
   const ref = useRef<T>(null);
 
   const handler: EventListener = (event) => {

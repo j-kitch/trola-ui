@@ -1,3 +1,3 @@
-import TicketModal from "./TicketModal";
+import TicketModal from './TicketModal';
 
 export default TicketModal;

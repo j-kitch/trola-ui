@@ -43,9 +43,7 @@ const List: FC<Props> = ({ index, id, setModalVisible }) => {
                       index={i}
                       key={i}
                     >
-                      {(drag) => (
-                        <Ticket provided={drag} i={i} />
-                      )}
+                      {(drag) => <Ticket provided={drag} i={i} />}
                     </Draggable>
                   ))}
                 {drop.placeholder}
@@ -62,8 +60,7 @@ const List: FC<Props> = ({ index, id, setModalVisible }) => {
 const Board: FC = () => {
   const [modalVisible, setModalVisible] = useState(false);
 
-  const onDragEnd = () => {
-  };
+  const onDragEnd = () => {};
 
   return (
     <div className={classes.container}>

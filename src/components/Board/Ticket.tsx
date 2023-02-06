@@ -14,13 +14,13 @@ const Ticket: FC<Props> = ({ provided: drag, i }) => {
   const [modal, setModal] = useState(false);
 
   const ref = useClickOutside<HTMLDivElement>('ticket', () => setModal(false));
-  
+
   const openModal = () => {
     if (!modal) {
       setModal(true);
     }
   };
-  
+
   const closeModal = () => {
     setModal(false);
   };
@@ -35,7 +35,7 @@ const Ticket: FC<Props> = ({ provided: drag, i }) => {
       <ModalBackground visible={modal} />
       <div className={classes.fill} ref={ref} onClick={openModal}>
         Ticket {i}
-        <TicketModal visible={modal} onClose={closeModal}/>
+        <TicketModal visible={modal} onClose={closeModal} />
       </div>
     </div>
   );

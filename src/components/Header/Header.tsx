@@ -6,7 +6,6 @@ import classes from './Header.module.css';
 const Header: FC = () => {
   return (
     <header className={classes.container}>
-      
       <div className={classes.application}>
         <TrolaLogo />
         <div className={classes['application-text']}>Trolá</div>

@@ -30,23 +30,23 @@
 }
 
 .dropdown {
-    position: absolute;
-    width: 150px;
-    display: none;
-    flex-direction: column;
+  position: absolute;
+  width: 150px;
+  display: none;
+  flex-direction: column;
 
-    background-color: white;
-    border: 1px solid black;
-    z-index: 1;
+  background-color: white;
+  border: 1px solid black;
+  z-index: 1;
 
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
 }
 
 .show {
-    display: flex;
+  display: flex;
 }
 
 .spacer {
