@@ -1,6 +1,7 @@
 import { FC, useState } from 'react';
 import { DraggableProps, DraggableProvided } from 'react-beautiful-dnd';
 import useClickOutside from '../../hooks/useClickOutside';
+import Avatar from '../Avatar';
 import ModalBackground from '../ModalBackground';
 import TicketModal from '../TicketModal';
 import classes from './Board.module.css';
@@ -33,8 +34,11 @@ const Ticket: FC<Props> = ({ provided: drag, i }) => {
       className={classes.ticket}
     >
       <ModalBackground visible={modal} />
-      <div className={classes.fill} ref={ref} onClick={openModal}>
-        Ticket {i}
+      <div className={classes.ticketMain} ref={ref} onClick={openModal}>
+        <div className={classes.ticketTitle}>Ticket {i}</div>
+        <div className={classes.ticketAssigned}>
+            <Avatar name={["scooby", "doo"]}/>
+        </div>
         <TicketModal visible={modal} onClose={closeModal} />
       </div>
     </div>
