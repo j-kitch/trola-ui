@@ -22,7 +22,7 @@ interface BreadcrumbProps {
 
 const Breadcrumb: FC<BreadcrumbProps> = ({ title, onClick }) => {
     return (
-        <div onClick={onClick} className={classes.breadcrumb}>{title}</div>
+        <div onClick={onClick}>{title}</div>
     );
 };
 
