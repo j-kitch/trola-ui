@@ -7,7 +7,7 @@ interface BreadcrumbsProps {
 
 const Breadcrumbs: FC<BreadcrumbsProps> = ({ children }) => {
 
-    const elements = children.flatMap(breadcrumb => [breadcrumb, <span>/</span>]);
+    const elements = children.flatMap((breadcrumb, i) => [breadcrumb, <span key={(i * children.length) + children.length + 1}>/</span>]);
     elements.pop();
 
     return (

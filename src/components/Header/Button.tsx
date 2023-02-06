@@ -8,7 +8,7 @@ interface Props {
 
 const Button: FC<Props> = ({ children }) => {
   const [isDropdownShowing, setIsDropdownShowing] = useState(false);
-  const dropdownRef = useClickOutside<HTMLDivElement>(() =>
+  const dropdownRef = useClickOutside<HTMLDivElement>('button', () =>
     setIsDropdownShowing(false)
   );
 
